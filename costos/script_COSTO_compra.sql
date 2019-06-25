@@ -1,0 +1,20 @@
+﻿SELECT 
+	numordcom,
+	fecordcom,
+	obscom,
+	monsubtot,
+	monimp,
+	montot,
+	codestpro1,
+	codestpro2,
+	codestpro3,
+	codestpro4,
+	codestpro5,
+	estcondat,
+	codusureg
+FROM 
+	soc_ordencompra
+WHERE
+	estcondat='S'
+order by 
+	numordcom

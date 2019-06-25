@@ -1,0 +1,24 @@
+﻿INSERT INTO sno_fideiconfigurable 
+SELECT 
+	*
+FROM 
+	dblink('dbname=db_mdo_2014', 
+	'SELECT 
+		codemp,
+		anocurfid,
+		codded,
+		codtipper,
+		diabonvacfid,
+		diabonfinfid,
+		cueprefid
+	FROM 
+		sno_fideiconfigurable') 
+	AS 
+		sno_fideiconfigurable(
+			codemp 		character(4),
+			anocurfid 	character(4),
+			codded 		character(3),
+			codtipper 	character(4),
+			diabonvacfid 	integer,
+			diabonfinfid 	integer,
+			cueprefid 	character varying(25));

@@ -1,0 +1,27 @@
+﻿--insert into scg_cuentas
+select 
+	codemp,
+	substring(sc_cuenta,1,9)||'1203'||substring(sc_cuenta,14,6),
+	denominacion,
+	status,
+	asignado,
+	distribuir,
+	enero,
+	febrero,
+	marzo,
+	abril,
+	mayo,
+	junio,
+	julio,
+	agosto,
+	septiembre,
+	octubre,
+	noviembre,
+	diciembre,
+	nivel,
+	referencia,
+	cueproacu
+from 
+	scg_cuentas
+where
+	substring(sc_cuenta,10,4)='1303'

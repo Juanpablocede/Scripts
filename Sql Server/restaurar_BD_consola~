@@ -1,0 +1,14 @@
+UPDATE pg_database SET encoding=16 WHERE datname='db_mdo_2017';
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2014 -v "/home/sistema/Escritorio/db_mdo_2014_19_01_2016_15_30_01.backup"
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2015 -v "/home/sistema/Escritorio/db_mdo_2015_04_02_2016_16_30_01.backup"
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2016 -v "/home/sistema/Escritorio/db_mdo_2016_04_11_2016_15_30_01.backup"
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2017 -v "/home/sistema/Escritorio/db_mdo_apertura.backup"
+
+Hacer el esquema desde la consola.
+root@sistema:/usr/lib/postgresql/9.4/bin# ./pg_dump -U postgres -s db_mdo_2016 > /home/sistema/Escritorio/esquema.sql
+
+

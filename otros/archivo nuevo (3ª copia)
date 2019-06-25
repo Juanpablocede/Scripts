@@ -1,0 +1,42 @@
+$SQL = "SELECT DISTINCT 
+     p.id_orden, 
+     p.codigo_tipo_producto as producto, 
+     (p.cotizado ::numeric::integer) as Bultos, 
+     COALESCE((SELECT 
+           (p5.cantidad ::numeric::double precision)
+           FROM 
+           scsipcab.tsab_det_notadespacho p5
+           WHERE
+           p5.id_orden = '$campo' AND p5.estatus = 'D' AND p5.codigo_tipo_producto = p.codigo_tipo_producto
+           GROUP BY
+           p5.codigo_tipo_producto,
+           p5.cantidad ),0) AS despachado,
+          
+     COALESCE((SELECT (p5.cantidad::numeric::double precision)
+     FROM 
+     scsipcab.tsab_notadespacho p4, 
+     scsipcab.tsab_det_notadespacho p5 
+     WHERE p4.id_notades = p5.id_notadespacho AND 
+     p5.id_orden='$campo' AND p4.id_orden = '$campo' 
+     AND p5.estatus = 'P' AND 
+     p5.codigo_tipo_producto = p.codigo_tipo_producto),0)::numeric::double precision AS generado, 
+     COALESCE((p.cotizado) -  COALESCE((SELECT 
+           (p5.cantidad ::numeric::double precision)
+           
+FROM 
+scsipcab.tsab_det_notadespacho p5
+WHERE
+p5.id_orden = '$campo' AND p5.estatus = 'D' AND p5.codigo_tipo_producto = p.codigo_tipo_producto
+GROUP BY
+p5.codigo_tipo_producto,
+p5.cantidad),0) + (SELECT DISTINCT (p5.cantidad::numeric::double precision)
+     FROM 
+     scsipcab.tsab_notadespacho p4, 
+     scsipcab.tsab_det_notadespacho p5 
+     WHERE p4.id_notades = p5.id_notadespacho AND 
+     p5.id_orden='$campo' AND p4.id_orden = '$campo' 
+     AND p5.estatus = 'P' AND 
+     p5.codigo_tipo_producto = p.codigo_tipo_producto),0) as por_despachar FROM scsipcab.vsab_ordendespacho_det p LEFT JOIN scsipcab.tsab_produccion as t ON p.codigo_tipo_producto = t.codigo_tipo_producto_recla AND t.estatus = 'P' WHERE p.id_orden='$campo' GROUP BY p.id_orden, p.codigo_tipo_producto, p.cotizado";
+    
+   
+    

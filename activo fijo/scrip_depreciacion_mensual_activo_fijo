@@ -1,0 +1,25 @@
+
+SELECT
+	saf_activo.spg_cuenta_dep,
+	saf_activo.sc_cuenta,
+	SUM(saf_depreciacion.mondepmen) AS Deprec_Mensual
+FROM 
+	saf_depreciacion,
+	saf_activo
+WHERE 
+	saf_activo.codact=saf_depreciacion.codact AND
+	saf_activo.codemp=saf_depreciacion.codemp AND
+	EXTRACT(YEAR FROM saf_depreciacion.fecdep)::INT = '2012' AND
+	EXTRACT(MONTH FROM saf_depreciacion.fecdep)::INT = '12'
+	--SUBSTR(CAST(saf_depreciacion.fecdep AS CHAR(10)),1,4) = '2012' AND
+	--SUBSTR(CAST(saf_depreciacion.fecdep AS CHAR(10)),6,2) = '04'
+GROUP BY
+	saf_activo.spg_cuenta_dep ,
+	saf_activo.sc_cuenta
+
+
+
+
+
+
+

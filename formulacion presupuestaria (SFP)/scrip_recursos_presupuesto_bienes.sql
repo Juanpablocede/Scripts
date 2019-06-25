@@ -1,0 +1,72 @@
+﻿SELECT
+	spe_int_arts.ano_presupuesto,
+	spe_relacion_es.codestpro1,
+	sfp_estpro1.denestpro1,
+	spe_relacion_es.codestpro2,
+	sfp_estpro2.denestpro2,
+	spe_relacion_es.codestpro3,
+	sfp_estpro3.denestpro3,
+	spe_relacion_es.codestpro4,
+	sfp_estpro4.denestpro4,
+	spe_relacion_es.codestpro5,
+	sfp_estpro5.denestpro5,
+	spe_int_arts.codart,
+	siv_articulo.denart,
+	spe_int_arts.precio_uni,
+	siv_unidadmedida.denunimed,
+	spe_int_arts.sig_cuenta,
+	spe_int_arts.enero,
+	spe_int_arts.febrero,
+	spe_int_arts.marzo,
+	spe_int_arts.abril,
+	spe_int_arts.mayo,
+	spe_int_arts.junio,
+	spe_int_arts.julio,
+	spe_int_arts.agosto,
+	spe_int_arts.septiembre,
+	spe_int_arts.octubre,
+	spe_int_arts.noviembre,
+	spe_int_arts.diciembre,
+	spe_int_arts.total
+FROM
+	spe_int_arts,
+	siv_articulo,
+	siv_unidadmedida,
+	spe_relacion_es,
+	sfp_estpro1,
+	sfp_estpro2,
+	sfp_estpro3,
+	sfp_estpro4,
+	sfp_estpro5
+WHERE
+	spe_int_arts.codart=siv_articulo.codart AND
+	siv_articulo.codunimed=siv_unidadmedida.codunimed AND
+	spe_int_arts.codinte=spe_relacion_es.codinte AND
+
+	spe_relacion_es.codestpro1='0000000000000000000000007' AND
+	--spe_relacion_es.codestpro2='0000000000000000000002602' AND
+	--spe_relacion_es.codestpro3='0000000000000000000000001' AND
+	--spe_relacion_es.codestpro4='0000000000000000000000001' AND
+	--spe_relacion_es.codestpro5='0000000000000000000000001' AND
+
+	spe_relacion_es.codestpro1=sfp_estpro1.codestpro1 AND
+	
+	spe_relacion_es.codestpro1=sfp_estpro2.codestpro1 AND
+	spe_relacion_es.codestpro2=sfp_estpro2.codestpro2 AND
+
+	spe_relacion_es.codestpro1=sfp_estpro3.codestpro1 AND
+	spe_relacion_es.codestpro2=sfp_estpro3.codestpro2 AND
+	spe_relacion_es.codestpro3=sfp_estpro3.codestpro3 AND
+
+	spe_relacion_es.codestpro1=sfp_estpro4.codestpro1 AND
+	spe_relacion_es.codestpro2=sfp_estpro4.codestpro2 AND
+	spe_relacion_es.codestpro3=sfp_estpro4.codestpro3 AND
+	spe_relacion_es.codestpro4=sfp_estpro4.codestpro4 AND
+
+	spe_relacion_es.codestpro1=sfp_estpro5.codestpro1 AND
+	spe_relacion_es.codestpro2=sfp_estpro5.codestpro2 AND
+	spe_relacion_es.codestpro3=sfp_estpro5.codestpro3 AND
+	spe_relacion_es.codestpro4=sfp_estpro5.codestpro4 AND
+	spe_relacion_es.codestpro5=sfp_estpro5.codestpro5
+ORDER BY
+	siv_articulo.denart

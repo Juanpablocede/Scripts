@@ -1,0 +1,161 @@
+﻿--Migra conceptos
+INSERT INTO sno_concepto
+SELECT 
+	*
+FROM 
+	dblink('dbname=db_mdo_2016', 
+	'SELECT 
+		  codemp,
+		  codnom,
+		  codconc,
+		  nomcon,
+		  titcon,
+		  sigcon,
+		  forcon,
+		  glocon,
+		  acumaxcon,
+		  valmincon,
+		  valmaxcon,
+		  concon,
+		  cueprecon,
+		  cueconcon,
+		  spi_cuenta,
+		  aplisrcon,
+		  sueintcon,
+		  sueintvaccon,
+		  conprenom,
+		  intprocon,
+		  codestpro1,
+		  codestpro2,
+		  codestpro3,
+		  codestpro4,
+		  codestpro5,
+		  estcla,
+		  forpatcon,
+		  cueprepatcon,
+		  cueconpatcon,
+		  titretempcon,
+		  titretpatcon,
+		  valminpatcon,
+		  valmaxpatcon,
+		  codprov,
+		  cedben,
+		  aplarccon,
+		  poringcon,
+		  intingcon,
+		  conprocon,
+		  repacucon,
+		  repconsunicon,
+		  consunicon,
+		  quirepcon,
+		  asifidper,
+		  asifidpat,
+		  frevarcon,
+		  persalnor,
+		  aplresenc,
+		  conperenc,
+		  codente,
+		  guarrepcon,
+		  aplidiasadd,
+		  aplisalnorutilidad
+	FROM 
+		sno_concepto') 
+	AS 
+		sno_concepto(
+			  codemp character(4),
+			  codnom character(4),
+			  codconc character(10),
+			  nomcon character varying(30),
+			  titcon character varying(254),
+			  sigcon character varying(1),
+			  forcon text,
+			  glocon smallint,
+			  acumaxcon double precision,
+			  valmincon double precision,
+			  valmaxcon double precision,
+			  concon text,
+			  cueprecon character varying(25),
+			  cueconcon character varying(25),
+			  spi_cuenta character varying(25),
+			  aplisrcon smallint,
+			  sueintcon smallint,
+			  sueintvaccon smallint,
+			  conprenom smallint,
+			  intprocon character varying(1),
+			  codestpro1 character(25),
+			  codestpro2 character(25),
+			  codestpro3 character(25),
+			  codestpro4 character(25),
+			  codestpro5 character(25),
+			  estcla character(1),
+			  forpatcon text,
+			  cueprepatcon character varying(25),
+			  cueconpatcon character varying(25),
+			  titretempcon character varying(10),
+			  titretpatcon character varying(10),
+			  valminpatcon double precision,
+			  valmaxpatcon double precision,
+			  codprov character varying(10),
+			  cedben character varying(10),
+			  aplarccon smallint,
+			  poringcon double precision,
+			  intingcon character(1),
+			  conprocon character varying(1),
+			  repacucon character(1),
+			  repconsunicon character(1),
+			  consunicon character varying(10),
+			  quirepcon character(1),
+			  asifidper character(1),
+			  asifidpat character(1),
+			  frevarcon character(1),
+			  persalnor character(1),
+			  aplresenc character(1),
+			  conperenc character(1),
+			  codente character(12),
+			  guarrepcon character(1),
+			  aplidiasadd smallint,
+			  aplisalnorutilidad smallint)
+WHERE 
+	codnom BETWEEN '0000' AND '0012' OR codnom='1000';
+
+--Migra constantes
+INSERT INTO sno_constante
+SELECT 
+	*
+FROM 
+	dblink('dbname=db_mdo_2016', 
+	'SELECT 
+		codemp,
+		codnom,
+		codcons,
+		nomcon,
+		unicon,
+		equcon,
+		topcon,
+		valcon,
+		reicon,
+		tipnumcon,
+		conespseg,
+		esttopmod,
+		conperenc
+	FROM 
+		sno_constante') 
+	AS 
+		sno_constante(
+				codemp character(4),
+				codnom character(4),
+				codcons character(10),
+				nomcon character varying(30),
+				unicon character varying(10),
+				equcon double precision,
+				topcon double precision,
+				valcon double precision,
+				reicon smallint,
+				tipnumcon character varying(1),
+				conespseg character(1),
+				esttopmod character(1),
+				conperenc character(1))
+WHERE 
+	codnom BETWEEN '0000' AND '0012' OR codnom='1000';
+
+

@@ -1,0 +1,84 @@
+        <tr>
+          	<td height="22"><div align="right">Enero</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkenero" type="checkbox" class="sin-borde" id="chkenero" value="1" <?php print $ls_enero;?> >
+				<input name="txtporcenero" type="text" id="txtporcenero" value="<?php print $li_porcenero;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+        <tr>
+          	<td height="22"><div align="right">Febrero</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkfebrero" type="checkbox" class="sin-borde" id="chkfebrero" value="1" <?php print $ls_febrero;?> >
+				<input name="txtporcfebrero" type="text" id="txtporcfebrero" value="<?php print $li_porcfebrero;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+         <tr>
+          	<td height="22"><div align="right">Marzo</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkmarzo" type="checkbox" class="sin-borde" id="chkmarzo" value="1" <?php print $ls_marzo;?> >
+				<input name="txtporcmarzo" type="text" id="txtporcmarzo" value="<?php print $li_porcmarzo;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+        <tr>
+          	<td height="22"><div align="right">Abril</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkaril" type="checkbox" class="sin-borde" id="chkbaril" value="1" <?php print $ls_abril;?> >
+				<input name="txtporcabril" type="text" id="txtporcabril" value="<?php print $li_porcabril;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+	    <tr>
+          	<td height="22"><div align="right">Mayo</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkmayo" type="checkbox" class="sin-borde" id="chkmayo" value="1" <?php print $ls_mayo;?> >
+				<input name="txtporcmayo" type="text" id="txtporcmayo" value="<?php print $li_porcmayo;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+	    <tr>
+          	<td height="22"><div align="right">Junio</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkjunio" type="checkbox" class="sin-borde" id="chkjunio" value="1" <?php print $ls_junio;?> >
+				<input name="txtporcjunio" type="text" id="txtporcjunio" value="<?php print $li_porcjunio;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+	    <tr>
+          	<td height="22"><div align="right">Julio</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkjulio" type="checkbox" class="sin-borde" id="chkjulio" value="1" <?php print $ls_julio;?> >
+				<input name="txtporcjulio" type="text" id="txtporcjulio" value="<?php print $li_porcjulio;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+	    <tr>
+          	<td height="22"><div align="right">Agosto</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkagosto" type="checkbox" class="sin-borde" id="chkagosto" value="1" <?php print $ls_agosto;?> >
+				<input name="txtporcagosto" type="text" id="txtporcagosto" value="<?php print $li_porcagosto;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+	    <tr>
+          	<td height="22"><div align="right">Septiembre</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkseptiembre" type="checkbox" class="sin-borde" id="chkseptiembre" value="1" <?php print $ls_septiembre;?> >
+				<input name="txtporcseptiembre" type="text" id="txtporcseptiembre" value="<?php print $li_porcseptiembre;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+	    <tr>
+          	<td height="22"><div align="right">Octubre</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkoctubre" type="checkbox" class="sin-borde" id="chkoctubre" value="1" <?php print $ls_octubre;?> >
+				<input name="txtporcoctubre" type="text" id="txtporcoctubre" value="<?php print $li_porcoctubre;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+	    <tr>
+          	<td height="22"><div align="right">Noviembre</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chknoviembre" type="checkbox" class="sin-borde" id="chknoviembre" value="1" <?php print $ls_noviembre;?> >
+				<input name="txtporcnoviembre" type="text" id="txtporcnoviembre" value="<?php print $li_porcnoviembre;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>
+	    <tr>
+          	<td height="22"><div align="right">Diciembre</div></td>
+			<td height="22" colspan="3" align="left">
+				<input name="chkdiciembre" type="checkbox" class="sin-borde" id="chkdiciembre" value="1" <?php print $ls_diciembre;?> >
+				<input name="txtporcdiciembre" type="text" id="txtporcdiciembre" value="<?php print $li_porcdiciembre;?>" size="7" maxlength="7" onKeyPress="return(ue_formatonumero(this,'.',',',event))" style="text-align:right">
+			</td>
+        </tr>

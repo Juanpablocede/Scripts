@@ -1,0 +1,70 @@
+﻿SELECT 
+	scg_cuentas.sc_cuenta, 
+	MAX(scg_cuentas.denominacion) AS denominacion, 
+	MAX(scg_cuentas.nivel) AS nivel, 
+	MAX(scg_cuentas.status) AS status, 
+	COALESCE(SUM(scg_saldos.debe_mes),0) as debe_mes, 
+	COALESCE(SUM(scg_saldos.haber_mes),0) as haber_mes, 
+	COALESCE(0,0) as debe_mes_ant , 
+	COALESCE(0,0) as haber_mes_ant, 
+	COALESCE(0,0) as total_debe , 
+	COALESCE(0,0) as total_haber 
+FROM 
+	scg_cuentas LEFT OUTER JOIN scg_saldos ON scg_saldos.fecsal 
+	BETWEEN '2012-01-01' AND '2012-01-31' AND
+	scg_cuentas.codemp = scg_saldos.codemp AND
+	scg_cuentas.sc_cuenta = scg_saldos.sc_cuenta 
+WHERE 
+	scg_cuentas.codemp='0001' AND 
+	scg_cuentas.sc_cuenta BETWEEN '1130201000000000002' AND '1130201000000000002' AND 
+	scg_cuentas.nivel<=10 
+GROUP BY 
+	scg_cuentas.sc_cuenta 
+UNION 
+SELECT 
+	scg_cuentas.sc_cuenta, 
+	MAX(scg_cuentas.denominacion) AS denominacion, 
+	MAX(scg_cuentas.nivel) AS nivel, 
+	MAX(scg_cuentas.status) AS status, 
+	COALESCE(0,0) as debe_mes, 
+	COALESCE(0,0) as haber_mes, 
+	COALESCE(SUM(scg_saldos.debe_mes),0) as debe_mes_ant ,
+	COALESCE(SUM(scg_saldos.haber_mes),0) as haber_mes_ant, 
+	COALESCE(0,0) as total_debe , COALESCE(0,0) as total_haber 
+FROM 
+	scg_cuentas, 
+	scg_saldos 
+WHERE 
+	scg_cuentas.codemp='0001' AND 
+	scg_cuentas.sc_cuenta BETWEEN '1130201000000000002' AND '1130201000000000002' AND 
+	scg_saldos.fecsal<'2012-01-01' AND 
+	scg_cuentas.nivel<=10 AND 
+	scg_cuentas.codemp = scg_saldos.codemp AND 
+	scg_cuentas.sc_cuenta = scg_saldos.sc_cuenta 
+GROUP BY 
+	scg_cuentas.sc_cuenta 
+UNION 
+SELECT 
+	scg_cuentas.sc_cuenta, 
+	MAX(scg_cuentas.denominacion) AS denominacion, 
+	MAX(scg_cuentas.nivel) AS nivel, 
+	MAX(scg_cuentas.status) AS status, 
+	COALESCE(0,0) as debe_mes, 
+	COALESCE(0,0) as haber_mes, 
+	COALESCE(0,0) as debe_mes_ant , 
+	COALESCE(0,0) as haber_mes_ant, 
+	COALESCE(SUM(scg_saldos.debe_mes),0) as total_debe , 
+	COALESCE(SUM(scg_saldos.haber_mes),0) as total_haber 
+FROM 
+	scg_cuentas, 
+	scg_saldos 
+WHERE 
+	scg_cuentas.codemp='0001' AND 
+	scg_cuentas.sc_cuenta BETWEEN '1130201000000000002' AND '1130201000000000002' AND 
+	scg_saldos.fecsal BETWEEN '2012-01-01' AND '2012-01-31' AND scg_cuentas.nivel=1 AND 
+	scg_cuentas.codemp = scg_saldos.codemp AND 
+	scg_cuentas.sc_cuenta = scg_saldos.sc_cuenta 
+GROUP BY 
+	scg_cuentas.sc_cuenta 
+ORDER BY 
+	sc_cuenta 

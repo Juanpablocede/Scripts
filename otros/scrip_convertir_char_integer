@@ -1,0 +1,23 @@
+select
+	posicion::integer,
+	sub_posicion::integer,
+	primer_nivel::integer,
+	segundo_nivel::integer,
+	tercer_nivel::integer,
+	cuarto_nivel::integer,
+	quinto_nivel::integer,
+	sexto_nivel::integer,
+	septimo_nivel::integer,
+	nombre_opcion
+from 
+	estructura_menu;
+
+select 
+	porint, 
+	(to_char((porint/100),'9.9999')::double precision)  
+from 
+	sno_fideiperiodointereses 
+where 
+	porint>1
+
+update sno_fideiperiodointereses set porint=(to_char((porint/100),'9.9999')::double precision) where porint>1

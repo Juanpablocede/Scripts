@@ -1,0 +1,44 @@
+﻿SELECT
+	sno_personal.codper,
+	RTRIM(sno_personal.NOMPER)||' '||RTRIM(sno_personal.apeper) AS Nombres,
+	sno_personal.fecingper,
+	COALESCE((SELECT
+		sno_deudaanterior.monpreant
+	FROM
+		sno_deudaanterior
+	WHERE
+		sno_deudaanterior.codper=sno_personal.codper),0)+
+	COALESCE((SELECT
+		SUM(sno_fideiperiodo.apoper)
+	FROM
+		sno_fideiperiodo
+	WHERE
+		sno_fideiperiodo.codper=sno_personal.codper),0) AS "acumulada",
+
+	COALESCE((SELECT
+		sno_deudaanterior.monant
+	FROM
+		sno_deudaanterior
+	WHERE
+		sno_deudaanterior.codper=sno_personal.codper),0)+
+	COALESCE((SELECT
+		SUM(sno_anticipoprestaciones.monant)
+	FROM
+		sno_anticipoprestaciones
+	WHERE
+		sno_anticipoprestaciones.codper=sno_personal.codper),0) AS "anticipos"
+FROM
+	sno_personal,
+	sno_personalnomina
+WHERE
+	sno_personal.estper='1' AND
+	sno_personal.codper=sno_personalnomina.codper AND
+	sno_personalnomina.staper IN('1','2','4') AND
+	sno_personalnomina.codnom BETWEEN '0000' AND '0010' --and
+	--sno_personal.codper='0006880620'
+ORDER BY
+	sno_personal.codper
+
+
+--select * from sno_deudaanterior where codper='0006880620'
+--select * from sno_anticipoprestaciones where codper='0006880620'

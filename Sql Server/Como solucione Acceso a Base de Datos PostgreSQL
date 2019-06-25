@@ -1,0 +1,7 @@
+
+Desde una consulta root
+
+chown -R postgres /opt/PostgreSQL/9.2/data
+chmod -R 0700 /opt/PostgreSQL/9.2/data
+
+# find / -iname initdb

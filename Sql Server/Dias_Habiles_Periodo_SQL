@@ -1,0 +1,41 @@
+CREATE PROCEDURE P_CON_CALCULA_DIAS_HABILES_MES
+
+AS
+
+DECLARE @FechaInicio     DATETIME -- Variable para indicar la fecha inicial que se quiere evaluar
+DECLARE @FechaFin        DATETIME -- Variable para indicar la fecha final que se quiere evaluar
+    
+DECLARE @TotalDias        INTEGER --Esta variable es para calcular cuantos dias hay en el rango de fechas
+DECLARE @DiasSabados    INTEGER --Esta variable es para determinar los dias sabados del mes
+DECLARE @DiasDomingos    INTEGER --Esta variable es para determinar los dias domingos del mes
+DECLARE @DiasFeriados     INTEGER --Total dias feriados entre el rango de fechas
+DECLARE @Contador        INTEGER --Esta variable nos permite hacer un ciclo hasta el ultimo dia del mes
+DECLARE @EvaluarDia         DATETIME --Esta variable es para evaluar cada dia del mes y saber si es sabado o domingo
+
+SELECT @Contador=0  
+SELECT @DiasSabados=0
+SELECT @DiasDomingos=0
+SELECT @TotalDias=0
+SELECT @DiasFeriados=0
+
+SELECT @FechaInicio='01/12/2011'
+SELECT @FechaFin='31/12/2011'
+ 
+--Se calcula el total de dias que hay en el rango de fechas
+SELECT @TotalDias=(DATEDIFF(DAY,@FechaInicio,@FechaFin)+1)
+--Se cuantan los dias feriados que hay en el rango de fecha y en la Tabla Feriado_Mes
+SELECT @DiasFeriados=ISNULL((SELECT COUNT(Dia) FROM FERIADOS_ANO WHERE MES=MONTH(@FechaInicio)AND AÑO=YEAR(@FechaInicio)),0)
+    
+WHILE @Contador < @TotalDias
+BEGIN
+        SELECT @EvaluarDia=@FechaInicio+@Contador
+    IF DATEPART(DW,@EvaluarDia)=6 SELECT @DiasSabados=@DiasSabados+1
+    IF DATEPART(DW,@EvaluarDia)=7 SELECT @DiasDomingos=@DiasDomingos+1
+        SELECT @Contador=@Contador+1
+END
+
+SELECT 'Dias Mes:',@TotalDias,'Sabados Mes:',@DiasSabados,'Domingos Mes:',@DiasDomingos,'Feriados Mes:',@DiasFeriados,'Dias Habiles Mes:',(@TotalDias-(@DiasSabados+@DiasDomingos+@DiasFeriados))
+
+SELECT @DiasFeriados=ISNULL((SELECT COUNT(Dia) FROM FERIADOS_ANO WHERE MES=MONTH(@FechaInicio)AND AÑO=YEAR(@FechaInicio)),0)
+
+

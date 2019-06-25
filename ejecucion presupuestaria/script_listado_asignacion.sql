@@ -1,0 +1,53 @@
+﻿select 
+	codestpro1,
+	codestpro2,
+	codestpro3,
+	codestpro4,
+	codestpro5,
+	spg_cuenta,
+	denominacion,
+	estcla,
+	sum(asignado),
+	sum(precomprometido),
+	sum(comprometido),
+	sum(causado),
+	sum(pagado),
+	sum(aumento),
+	sum(disminucion),
+	sum(enero),
+	sum(febrero),
+	sum(marzo),
+	sum(abril),
+	sum(mayo),
+	sum(junio),
+	sum(julio),
+	sum(agosto),
+	sum(septiembre),
+	sum(octubre),
+	sum(noviembre),
+	sum(diciembre),
+	nivel
+from 
+	spg_cuentas 
+where 
+	(enero+febrero+marzo+abril+mayo+junio+julio+agosto+septiembre+octubre+noviembre+diciembre)>0
+	--(nivel<>1 and nivel<>2)
+group by
+	codestpro1,
+	codestpro2,
+	codestpro3,
+	codestpro4,
+	codestpro5,
+	spg_cuenta,
+	denominacion,
+	estcla,
+	nivel
+order by
+	codestpro1,
+	codestpro2,
+	codestpro3,
+	codestpro4,
+	codestpro5,
+	spg_cuenta,
+	denominacion,
+	estcla

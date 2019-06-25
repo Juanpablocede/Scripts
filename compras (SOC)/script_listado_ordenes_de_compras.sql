@@ -1,0 +1,34 @@
+﻿SELECT
+	soc_ordencompra.numordcom,
+	soc_ordencompra.fecordcom,
+	soc_ordencompra.cod_pro,
+	rpc_proveedor.nompro,
+	rpc_proveedor.rifpro,
+	soc_dt_bienes.codart,
+	siv_articulo.denart,
+	siv_unidadmedida.denunimed,
+	soc_dt_bienes.canart,
+	soc_dt_bienes.preuniart,
+	soc_dt_bienes.montotart,
+	soc_ordencompra.estcondat,
+	soc_ordencompra.codestpro2,
+	spg_ep2.denestpro2,
+	soc_ordencompra.obscom,
+	soc_ordencompra.forpagcom,
+	codusureg
+FROM
+	soc_ordencompra,
+	rpc_proveedor,
+	soc_dt_bienes,
+	siv_articulo,
+	siv_unidadmedida,
+	spg_ep2
+WHERE
+	soc_ordencompra.cod_pro=rpc_proveedor.cod_pro AND
+	soc_ordencompra.numordcom=soc_dt_bienes.numordcom AND
+	soc_ordencompra.estcondat=soc_dt_bienes.estcondat AND
+	soc_dt_bienes.codart=siv_articulo.codart AND
+	siv_articulo.codunimed=siv_unidadmedida.codunimed AND
+	soc_ordencompra.fecordcom>='01/01/2014' AND
+	soc_ordencompra.codestpro2=spg_ep2.codestpro2
+

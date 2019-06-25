@@ -1,0 +1,14 @@
+Sipcabp
+Modulo
+Buscadores
+	listar_personal_asistencia.php Lista el personal para cargar asistencia
+
+
+Sipcabp
+Modulo
+Procesos
+Asistencia
+Clases
+	class_det_asistencia.php Este programa carga el detalle de las asistencias.
+
+ 

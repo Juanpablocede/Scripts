@@ -1,0 +1,13 @@
+select
+	posicion::integer,
+	sub_posicion::integer,
+	primer_nivel::integer,
+	segundo_nivel::integer,
+	tercer_nivel::integer,
+	cuarto_nivel::integer,
+	quinto_nivel::integer,
+	sexto_nivel::integer,
+	septimo_nivel::integer,
+	nombre_opcion
+from 
+	estructura_menu;

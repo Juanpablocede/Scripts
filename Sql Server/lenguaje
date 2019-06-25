@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE FUNCTION create_language_plpgsql()
+RETURNS BOOLEAN AS $$
+    CREATE LANGUAGE plpgsql;
+    SELECT TRUE;
+$$ LANGUAGE SQL;

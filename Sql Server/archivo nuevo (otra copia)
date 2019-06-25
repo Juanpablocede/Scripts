@@ -1,0 +1,28 @@
+COALESCE((SELECT 
+    
+           CASE
+		WHEN p5.codigo_tipo_producto = '2101'::bpchar THEN p5.cantidad::double precision
+		ELSE count(p5.codigo_tipo_producto)
+           END 
+FROM 
+scsipcab.tsab_det_notadespacho p5
+WHERE
+p5.id_orden = '146' AND p5.estatus = 'D'
+GROUP BY
+p5.codigo_tipo_producto,
+p5.cantidad ),0) AS despachado, 
+
+COALESCE((SELECT 
+    
+           CASE
+		WHEN p5.codigo_tipo_producto = '2101'::bpchar THEN p3.cantidad - p5.cantidad::numeric
+                ELSE p3.cantidad - count(p5.codigo_tipo_producto)::numeric::integer::numeric
+           END 
+FROM 
+scsipcab.tsab_det_notadespacho p5
+WHERE
+p5.id_orden = '146' AND p5.estatus = 'D'
+GROUP BY
+p5.codigo_tipo_producto,
+p5.cantidad ),0) AS por_despachar 
+

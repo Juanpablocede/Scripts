@@ -1,0 +1,2 @@
+UPDATE pg_database SET encoding=16 WHERE datname='db_mdo_2013';
+pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2014 -v "/home/jcedeno/Escritorio/db_mdo_2014.backup"

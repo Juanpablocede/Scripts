@@ -1,0 +1,1 @@
+UPDATE pg_database SET encoding=16 WHERE datname='db_proforca_2011';

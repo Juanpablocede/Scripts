@@ -1,0 +1,70 @@
+UPDATE pg_database SET encoding=16 WHERE datname='db_mdo_2018';
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2014 -v "/home/sistema/Escritorio/db_mdo_2014_19_01_2016_15_30_01.backup"
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2015 -v "/home/sistema/Escritorio/db_mdo_2015_04_02_2016_16_30_01.backup"
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2016 -v "/home/sistema/Escritorio/db_mdo_2016_11_11_2016_15_30_01.backup"
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2017 -v "/home/juanpablo/Escritorio/db_mdo_2017_16_10_2017_22_00_01.backup"
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d db_mdo_2018 -v "/home/juanpablo/Escritorio/db_mdo_2018_26_06_2018_09_00_01.backup"
+
+Produccion
+1.-) En la terminal   --- SSH 130.62.1.5
+clave: s100fin
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d SOLOPRUEBAS_2018 -v "/home/produccion/db_mdo_2018_29_06_2018_19_00_01.backup"
+
+
+
+
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d SASPROF -v "/home/juanpablo/Escritorio/SASPROF_29_05_2018_13_00_01.backup"
+
+
+
+
+***RESTAURAR SOLO EL ESQUEMA***
+1)Ubicarse en la carpeta donde se encuentran los bin de postgresql
+
+ cd /usr/lib/postgresql/9.4/bin
+
+2)Ejecutar el siguiente comando:
+
+-s= Solo esquema
+
+-i= esquema y datos
+
+-p= puerto
+-h= host o direccion ip
+-U= usuario
+-d= Base de datos destino
+-v= Ubicacion del backup a restaurar
+
+./pg_restore -s -h localhost -p 5432 -U postgres -d db_mdo_2018 -v "/home/juanpablo/Escritorio/db_mdo_2017_16_10_2017_13_30_01.backup"
+
+*******************************
+
+/usr/bin/pg_restore -i -h localhost -p 5432 -U postgres -d SOLOPRUEBAS2017 -v "/home/juanpablo/Escritorio/db_mdo_2017_16_10_2017_13_30_01.backup"
+
+
+
+Hacer el esquema desde la consola.
+root@sistema:/usr/lib/postgresql/9.4/bin# ./pg_dump -U postgres -s SOLOPRUEBAS2017 > /home/juanpablo/Escritorio/db_mdo_2017_22_06_2017_08_30_01.backup
+	
+Para hacer Respaldo desde la consola a produccion
+1.-) hacer ssh al servidor desde su maquina
+	ssh 130.62.1.5
+	la clave es "s100fin"
+
+2.-) se dirige a la carpeta donde esta el binario de pg_restore en produccion
+	cd /usr/lib/postgresql/9.4/bin
+
+3.-) restauramos la base de datos
+
+./pg_restore -i -h localhost -p 5432 -U postgres -d SOLOPRUEBAS2017 -v "/home/produccion/basedatos/db_mdo_2017_22_06_2017_08_30_01.backup"
+
+
+
+

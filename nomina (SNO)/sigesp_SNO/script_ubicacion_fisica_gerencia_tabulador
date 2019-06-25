@@ -1,0 +1,57 @@
+﻿SELECT 
+	sno_personal.codper,
+	sno_personal.nomper,
+	sno_personal.apeper,
+	sno_personalnomina.sueper,
+	sno_personalnomina.codnom,
+	sno_nomina.desnom,
+	sno_personalnomina.codubifis,
+	sno_ubicacionfisica.desubifis,
+	sno_personal.codger,
+	srh_organigrama.desorg,
+	sno_personalnomina.depuniadm||sno_personalnomina.prouniadm,
+	sno_unidadadmin.desuniadm,
+	sno_personalnomina.codtab,
+	sno_tabulador.destab,
+	sno_personalnomina.codgra,
+	sno_personalnomina.codpas,
+	sno_personalnomina.codasicar,
+	sno_asignacioncargo.denasicar
+FROM
+	sno_personal,
+	sno_personalnomina,
+	sno_unidadadmin,
+	sno_ubicacionfisica,
+	sno_nomina,
+	sno_tabulador,
+	srh_organigrama,
+	sno_asignacioncargo
+WHERE
+	sno_personal.codper=sno_personalnomina.codper AND
+	(sno_personalnomina.codnom BETWEEN '0000' AND '0010' OR
+	sno_personalnomina.codnom BETWEEN '0114' AND '0115') AND
+
+	sno_personalnomina.staper IN('1','2') AND
+	sno_personal.estper='1' AND
+
+	sno_personalnomina.codnom=sno_nomina.codnom AND
+
+	sno_personalnomina.codubifis=sno_ubicacionfisica.codubifis AND
+
+	sno_personal.codger=srh_organigrama.codorg AND
+
+	sno_personalnomina.codemp=sno_unidadadmin.codemp AND
+	sno_personalnomina.depuniadm=sno_unidadadmin.depuniadm AND
+	sno_personalnomina.prouniadm=sno_unidadadmin.prouniadm AND
+
+	sno_personalnomina.codnom=sno_tabulador.codnom AND
+	sno_personalnomina.codtab=sno_tabulador.codtab AND
+	sno_personalnomina.codasicar=sno_asignacioncargo.codasicar AND
+	sno_personalnomina.codnom=sno_asignacioncargo.codnom
+	
+ORDER BY
+	sno_personal.codger
+
+
+	
+	

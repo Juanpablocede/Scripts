@@ -1,0 +1,15 @@
+﻿select 
+	desubifis,
+	strpos(desubifis ,'-'),
+	position('-' in(desubifis))-1::integer,
+	substring(desubifis,1,position('-' in(desubifis))+1),
+	substring(desubifis,position('-' in(desubifis))+1,100)
+from 
+	sno_ubicacionfisica
+where
+codubifis<>'0000'
+
+
+
+/*strpos(<cadena donde buscar>, <cadena a buscar>)
+position(<cadena a buscar> in <cadena donde buscar>)*/
