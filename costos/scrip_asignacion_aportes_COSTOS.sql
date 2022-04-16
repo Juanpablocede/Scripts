@@ -39,7 +39,7 @@ WHERE
 	
 	sno_hpersonalnomina.depuniadm=sno_unidadadmin.depuniadm AND
 	sno_hpersonalnomina.prouniadm=sno_unidadadmin.prouniadm AND
-	sno_hpersonalnomina.depuniadm IN('31','45')
+	sno_hpersonalnomina.depuniadm IN('31','45','01')
 	
 GROUP BY
 	sno_hsalida.codconc,
